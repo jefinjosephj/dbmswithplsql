@@ -112,4 +112,32 @@ SELECT EID,E_Name,Age,Nationality,E_Salary FROM Employee WHERE Age IN (20,29);
 SELECT * FROM employee WHERE age = 19 AND Nationality = "Australia";
 SELECT * FROM employee WHERE Nationality = "Australia" OR Nationality = "Riyadh";
 
+#JOiN OPERATIONS WITH INNER JOIN
+SELECT * FROM Employee INNER JOIN Dept ON Dept.Emp_ID=Employee.EID;
+SELECT Employee.EID, Dept.D_ID, Employee.E_Name, Employee.Age, Employee.Nationality, Dept.D_Name 
+FROM Employee INNER JOIN Dept On Dept.Emp_ID=Employee.EID;
 
+#JOIN OPERATIONS WITH LEFT JOIN
+SELECT * FROM Employee LEFT JOIN Dept ON Dept.Emp_ID=Employee.EID order by Employee.E_Name;
+SELECT Employee.EID, Dept.D_ID, Employee.E_Name, Employee.Age, Employee.Nationality, Dept.D_Name 
+FROM Employee LEFT JOIN Dept On Dept.Emp_ID=Employee.EID order by Employee.E_Name; 
+
+#JOIN OPERATIONS WITH RIGHT JOIN
+SELECT * FROM Employee RIGHT JOIN Dept ON Dept.Emp_ID=Employee.EID order by employee.EID;
+SELECT Employee.EID, Dept.D_ID, Employee.E_Name, Employee.Age, Employee.Nationality, Dept.D_Name 
+FROM Employee RIGHT JOIN Dept On Dept.Emp_ID=Employee.EID order by Employee.E_Name; 
+
+SELECT COUNT(*) FROM Employee;
+SELECT avg(E_Salary) FROM Employee;
+SELECT sum(E_Salary) FROM employee;
+SELECT min(E_Salary) from Employee;
+SELECT max(E_Salary) from Employee;
+
+#GROUP BY & HAVING FUNCTIONS.
+#1. Group By
+SELECT COUNT(EID), E_Name, E_Salary, Nationality FROM Employee GROUP BY Nationality;
+SELECT COUNT(EID), E_Name, E_Salary, Nationality FROM Employee GROUP BY Nationality ORDER BY COUNT(EID) ASC;
+SELECT COUNT(EID), E_Name, E_Salary, Nationality FROM Employee GROUP BY Nationality ORDER BY COUNT(EID) DESC;
+#2. Having By
+SELECT COUNT(EID), E_Name, E_Salary, Nationality FROM Employee GROUP BY Nationality HAVING COUNT(EID) > 1;
+SELECT COUNT(EID), E_Name, E_Salary, Nationality FROM Employee GROUP BY Nationality HAVING COUNT(EID) > 1 ORDER BY COUNT(EID) ASC;
