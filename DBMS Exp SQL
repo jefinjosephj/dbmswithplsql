@@ -141,3 +141,154 @@ SELECT COUNT(EID), E_Name, E_Salary, Nationality FROM Employee GROUP BY National
 #2. Having By
 SELECT COUNT(EID), E_Name, E_Salary, Nationality FROM Employee GROUP BY Nationality HAVING COUNT(EID) > 1;
 SELECT COUNT(EID), E_Name, E_Salary, Nationality FROM Employee GROUP BY Nationality HAVING COUNT(EID) > 1 ORDER BY COUNT(EID) ASC;
+
+
+2nd:
+create database company;
+use company;
+
+#Creating a Table for Employee.
+create table employee(Eid int(5) Primary Key, E_Name varchar(50),E_address varchar(25) default "bang", E_phn int(10) Unique, Email_ID varchar(30) Unique, Date_of_Join Date Not Null, Age int(2) check(age>18), E_Salary int(15));
+
+#Creating a Table for Dept.
+create table Dept(D_id int(5) Primary Key, D_Name varchar(25), Emp_ID int(5), Foreign Key (Emp_ID) references Employee(EID));
+
+#Creating a Table for Project.
+create table Project(P_ID int(5) Primary Key, P_Location varchar(50),e_id int(5),foreign key(e_id) references Employee(Eid));
+
+#Inserting The data values of Employee Table.
+insert into employee Values(22001, "Jessica","Bang", 936543206, "jessica@gmail.com", "2021-01-27", 19, 10000);
+insert into employee Values(22002, "Simon","Bang", 652387456, "simon@gmail.com", "2022-03-29", 20, 20000);
+insert into employee Values(22003, "Daisy","Bang", 936789654, "daisy@gmail.com", "2023-04-06", 19, 25000);
+insert into employee Values(22004, "Sukesh","Bang", 123434954, "sukesh@gmail.com", "2023-04-07", 39, 26000);
+insert into employee Values(22005, "Khalid","Bang", 123452456, "khalid@gmail.com", "2023-04-10", 29, 50340);
+insert into employee Values(22006, "Omar Bin Rashid","Bang", 765456784, "omarbinrashid@gmail.com", "2023-04-11", 29, 50340);
+insert into employee Values(22007, "Benson","Bang", 175572456, "benson@gmail.com", "2023-05-11", 29, 345632);
+insert into employee Values(22008, "Stephen","Bang", 124675456, "stephen@gmail.com", "2023-04-15", 29, 24354);
+insert into employee Values(22009, "Justina Thomas","Bang", 567654345, "jerlinthomas@gmail.com", "2023-07-15", 29, 2453);
+insert into employee Values(220010, "Reena","Bang", 1567875456, "reena@gmail.com", "2023-09-15", 29, 45564);
+delete from Employee where eid = 22004;
+
+#Inserting The data Values for Dept Table.
+insert into dept Values(001, "Computer Science", 22001);
+insert into dept values(002, "Automobile", 22002);
+insert into dept values(003, "Computer Science", 22003);
+insert into dept values(004, "Electronics", 22004);
+insert into dept values(005, "Computer Science", 22005);
+insert into dept values(006, "Civil", 22006);
+insert into dept values(007, "Arts", 22007);
+insert into dept values(008, "B.Com", 22008);
+insert into dept values(009, "Computer Science", 22009);
+insert into dept values(0010, "Computer Science", 220010);
+
+#Inserting The Data Values for Project.
+insert into project values(01, "Bangalore", 22001);
+insert into project values(02, "Coimbatore", 22002);
+insert into project values(03, "Chennai", 22003);
+insert into project values(04, "Mumbai", 22004);
+insert into project values(05, "Thiruvananthapuram", 22005);
+insert into project values(06, "Kochi", 22006);
+insert into project values(07, "Delhi", 22007);
+insert into project values(08, "Kochi", 22008);
+insert into project values(09, "Bangalore", 22009);
+
+delete from Employee where eid = 22004;
+
+delete from Employee where eid = 22004;
+UPDATE Employee set Email_ID = 'abxyz123@gmail.com' where Eid = 22001;
+select Email_id, Age from Employee;
+select * from employee order by Age asc;
+
+describe Employee;
+select * from Employee;
+describe dept;
+select * from dept;
+describe Project;
+select * from Project;
+
+truncate Employee;
+truncate Dept;
+truncate Project;
+
+desc Project;
+select * from Project;
+drop table Employee;
+drop table project;
+drop table dept;
+
+SELECT DISTINCT E_Name, Age, E_phn, Email_ID FROM Employee;
+SELECT DISTINCT Eid, E_address, Age FROM Employee;
+SELECT Eid, E_Address, Age, Date_Of_join FROM Employee WHERE Age = ALL (SELECT Age FROM Employee WHERE Age = 40);
+SELECT * FROM employee WHERE E_address IS NULL;
+
+
+alter table Employee add column Nationality varchar(10);
+alter table Employee drop column Country;
+alter table Employee modify column Nationality varchar(40);
+alter table Employee rename column Nationality to Country;
+UPDATE Employee set Nationality = 'Australia' where Eid = 22001;
+UPDATE Employee set Nationality = 'Germany' where Eid = 22002;
+UPDATE Employee set Nationality = 'Dubai' where Eid = 22003;
+Update Employee set Nationality = 'Australia' where eid = 22004;
+UPDATE Employee set Nationality = 'Netherlands' where Eid = 22005;
+UPDATE Employee set Nationality = 'United Arab Emirates' where Eid = 22006;
+UPDATE Employee set Nationality = 'Riyadh' where Eid = 22007;
+UPDATE Employee set Nationality = 'Switzerland' where Eid = 22008;
+UPDATE Employee set Nationality = 'UAE' where Eid = 22009;
+UPDATE Employee set Nationality = 'India' where Eid = 220010;
+
+
+#Inserting The data values of Employee Table.
+insert into employee Values(22001, "Bang", 936543206, "xyzdb@gmail.com", "2021-01-27", 19, 359723);
+insert into employee Values(22002, "Bang", 652387456, "abcdb@gmail.com", "2022-03-29", 20, 35234697);
+insert into employee Values(22003, "Bang", 936789654, "efgdb@gmail.com", "2023-04-06", 19, 4577978);
+insert into employee Values(22004, "Bang", 123434954, "osewdb@gmail.com", "2023-04-07", 39, 3749573);
+insert into employee Values(22005, "Bang", 123452456, "dbtheory@gmail.com", "2023-04-10", 29, 323543);
+                
+drop table employee;                                                           
+delete from Employee where eid = 22004;
+Update Employee Set E_address="Ghaziabad" where eid=22003;
+
+SELECT * FROM Employee WHERE Age = 29;
+SELECT EID,E_Name,Age,Nationality,E_Salary FROM Employee WHERE E_Salary > 29000;
+SELECT EID,E_Name,Age,Nationality,E_Salary FROM Employee WHERE Age BETWEEN 1 AND 20; 
+SELECT * FROM Employee WHERE Nationality Like 'S%';
+SELECT * FROM Employee WHERE Age IN (20,29);
+SELECT EID,E_Name,Age,Nationality,E_Salary FROM Employee WHERE Age IN (20,29);
+SELECT * FROM employee WHERE age = 19 AND Nationality = "Australia";
+SELECT * FROM employee WHERE Nationality = "Australia" OR Nationality = "Riyadh";
+
+#JOiN OPERATIONS WITH INNER JOIN
+SELECT * FROM Employee INNER JOIN
+Dept ON Dept.Emp_ID=Employee.EID order by employee.EID;
+SELECT Employee.EID, Dept.D_Name 
+FROM Employee INNER JOIN Dept On Dept.Emp_ID=Employee.EID order by Employee.E_Name;
+
+#JOIN OPERATIONS WITH LEFT JOIN
+SELECT * FROM Employee LEFT JOIN 
+Dept ON Dept.Emp_ID=Employee.EID order by employee.EID;
+SELECT Employee.EID, Dept.D_Name 
+FROM Employee LEFT JOIN Dept On Dept.Emp_ID=Employee.EID order by Employee.E_Name; 
+
+#JOIN OPERATIONS WITH RIGHT JOIN
+SELECT * FROM Employee RIGHT JOIN 
+Dept ON Dept.Emp_ID=Employee.EID order by employee.EID;
+SELECT Employee.EID, Dept.D_Name 
+FROM Employee RIGHT JOIN Dept On Dept.Emp_ID=Employee.EID order by Employee.E_Name;
+
+SELECT COUNT(*) FROM Employee;
+SELECT avg(E_Salary) FROM Employee;
+SELECT sum(E_Salary) FROM employee;
+SELECT min(E_Salary) from Employee;
+SELECT max(E_Salary) from Employee;
+
+#GROUP BY & HAVING FUNCTIONS.
+#1. Group By
+SELECT COUNT(EID), Nationality FROM Employee GROUP BY Nationality;
+SELECT COUNT(EID), Nationality FROM Employee GROUP BY Nationality ORDER BY COUNT(EID) ASC;
+SELECT COUNT(EID), Nationality FROM Employee GROUP BY Nationality ORDER BY COUNT(EID) DESC;
+#2. Having By
+SELECT COUNT(EID), Nationality FROM Employee GROUP BY Nationality HAVING COUNT(EID) > 1;
+SELECT COUNT(EID), Nationality FROM Employee GROUP BY Nationality HAVING COUNT(EID) > 1 ORDER BY COUNT(EID) ASC;
+
+SELECT EID from employee UNION SELECT EMP_ID from Dept;
