@@ -21,7 +21,7 @@ insert into employee Values(22007, "Benson","Bang", 175572456, "benson@gmail.com
 insert into employee Values(22008, "Stephen","Bang", 124675456, "stephen@gmail.com", "2023-04-15", 29, 24354);
 insert into employee Values(22009, "Justina Thomas","Bang", 567654345, "jerlinthomas@gmail.com", "2023-07-15", 29, 2453);
 insert into employee Values(220010, "Reena","Bang", 1567875456, "reena@gmail.com", "2023-09-15", 29, 45564);
-delete from Employee where eid = 22004;
+delete from Employee where eid = 22001;
 
 #Inserting The data Values for Dept Table.
 insert into dept Values(001, "Computer Science", 22001);
@@ -157,3 +157,11 @@ SELECT * FROM Employee WHERE E_phn = ANY (SELECT E_Phn from Employee WHERE E_Sal
 SELECT EID, E_Name, Age FROM Employee WHERE E_Address = all (SELECT E_Address WHERE EID > 22005);
 SELECT * FROM Employee WHERE Nationality = Some (SELECT Nationality FROM Employee WHERE EID > 22005);
 SELECT * FROM Employee WHERE E_Name = Some (SELECT E_Name FROM Employee WHERE Nationality = "Australia");
+
+#EXP-11
+CREATE VIEW EMPLOYEE_VIEW AS
+SELECT EID, E_Name, Age, E_Address, E_Salary, Nationality FROM Employee;
+SELECT * FROM Employee_View;
+DELETE FROM EMPLOYEE_VIEW
+WHERE EID=22001;
+DROP VIEW EMPLOYEE_VIEW;
